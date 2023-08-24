@@ -154,20 +154,10 @@ for (let index = 0; index < participants.length; index++) {
 const initialRowsNew: GridRowsProp = participantsRows;
 
 export default function FullFeaturedCrudGrid() {
-  // try {
-  //  const localStorageData:string = typeof window != 'undefined' ?  window.localStorage.getItem('scoreboard')?'':'': 'false';
-  // React.useEffect(() => {
-  //   // Perform localStorage action
-  //   localStorageData = localStorage.getItem('scoreboard')
-  //   console.log('localStorageData: ', localStorageData);
-  // }, [localStorageData])
-  // if (localStorageData == null) {
-  //   console.log('No variable named \"scoreboard\" in local storage.');
-  // }
-  const localStorageData = localStorage.getItem('scoreboard');
-  // } catch (ReferenceError) {
-  //   console.log('No variable named \"scoreboard\" in local storage.');
-  // }
+  let localStorageData = null;
+  if (typeof window !== 'undefined'){
+    localStorageData = localStorage.getItem('scoreboard');
+  }
   
   const storedDataParticipantsRows: GridValidRowModel[] = [];
   if (localStorageData != null) {
