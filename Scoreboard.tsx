@@ -13,6 +13,7 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Fade from '@mui/material/Fade';
 import Popper from '@mui/material/Popper';
@@ -149,6 +150,15 @@ for (let index = 0; index < participants.length; index++) {
     roundFour: 0,
     roundFive: 0,
     roundSix: 0,
+    roundSeven: 0,
+    roundEight: 0,
+    roundNine: 0,
+    roundTen: 0,
+    roundEleven: 0,
+    roundTwelve: 0,
+    roundThirteen: 0,
+    roundFourteen: 0,
+    roundFifteen: 0,
   });
 }
 const initialRowsNew: GridRowsProp = participantsRows;
@@ -173,6 +183,15 @@ export default function FullFeaturedCrudGrid() {
         roundFour: element.roundFour,
         roundFive: element.roundFive,
         roundSix: element.roundSix,
+        roundSeven: element.roundSeven,
+        roundEight: element.roundEight,
+        roundNine: element.roundNine,
+        roundTen: element.roundTen,
+        roundEleven: element.roundEleven,
+        roundTwelve: element.roundTwelve,
+        roundThirteen: element.roundThirteen,
+        roundFourteen: element.roundFourteen,
+        roundFifteen: element.roundFifteen,
       });
     }
   }
@@ -214,16 +233,21 @@ export default function FullFeaturedCrudGrid() {
 
   const processRowUpdate = (newRow: GridRowModel) => {
     const updatedRow = { ...newRow, isNew: false };
-    console.log('newRow: ', newRow);
     let toSaveRows = rows.map((row) => (row.id === newRow.id ? updatedRow : row));
     setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
-    console.log('toSaveRows: ', toSaveRows);
     localStorage.setItem('scoreboard', JSON.stringify(toSaveRows));
     return updatedRow;
   };
 
   const handleRowModesModelChange = (newRowModesModel: GridRowModesModel) => {
     setRowModesModel(newRowModesModel);
+  };
+
+  const handleTextBoxChange = (e:any) => {
+    const title = document.getElementById("scoreboard_title");
+    if(title != null){
+      title.textContent = 'Leaderboard - '+e.target.value;
+      };
   };
 
   const columns: GridColDef[] = [
@@ -233,6 +257,7 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundOne',
       headerName: 'Round 1',
       type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -244,6 +269,7 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundTwo',
       headerName: 'Round 2',
       type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -255,6 +281,7 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundThree',
       headerName: 'Round 3',
       type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -266,6 +293,7 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundFour',
       headerName: 'Round 4',
       type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -277,6 +305,7 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundFive',
       headerName: 'Round 5',
       type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -288,6 +317,115 @@ export default function FullFeaturedCrudGrid() {
       field: 'roundSix',
       headerName: 'Round 6',
       type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundSeven',
+      headerName: 'Round 7',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundEight',
+      headerName: 'Round 8',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundNine',
+      headerName: 'Round 9',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundTen',
+      headerName: 'Round 10',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundEleven',
+      headerName: 'Round 11',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundTwelve',
+      headerName: 'Round 12',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundThirteen',
+      headerName: 'Round 13',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundFourteen',
+      headerName: 'Round 14',
+      type: 'number',
+      minWidth: 100,
+      flex: 1,
+      align: 'center',
+      headerAlign: 'center',
+      editable: true,
+      sortable: false,
+      headerClassName: 'score-keeper--header',
+    },
+    {
+      field: 'roundFifteen',
+      headerName: 'Round 15',
+      type: 'number',
+      minWidth: 100,
       flex: 1,
       align: 'center',
       headerAlign: 'center',
@@ -307,7 +445,10 @@ export default function FullFeaturedCrudGrid() {
       hideSortIcons: true,
       headerAlign: 'center',
       valueGetter: (params) =>
-        (params.row.roundOne +  params.row.roundTwo + params.row.roundThree + params.row.roundFour + params.row.roundFive + params.row.roundSix),
+        (params.row.roundOne +  params.row.roundTwo + params.row.roundThree + params.row.roundFour + 
+          params.row.roundFive + params.row.roundSix + params.row.roundSeven + params.row.roundEight + 
+          params.row.roundNine + params.row.roundTen + params.row.roundEleven + params.row.roundTwelve + 
+          params.row.roundThirteen + params.row.roundFourteen + params.row.roundFifteen),
     },
     {
       field: 'actions',
@@ -373,6 +514,15 @@ export default function FullFeaturedCrudGrid() {
         },
       }}
     >
+      <Typography variant="h1" id='scoreboard_title' gutterBottom>
+        Leaderboard
+      </Typography>
+      <TextField
+          onChange={handleTextBoxChange}
+          id="scoreboard_name_textbox"
+          label="Event Name"
+          defaultValue="AOG"
+        />
       <DataGrid
         initialState={{
           sorting: {
