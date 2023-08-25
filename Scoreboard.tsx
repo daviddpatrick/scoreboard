@@ -535,8 +535,8 @@ export default function FullFeaturedCrudGrid() {
       <TextField
           onChange={handleTextBoxChange}
           id="scoreboard_name_textbox"
-          label="Event Name"
-          defaultValue="AOG"
+          label="Enter Event Name"
+          defaultValue=""
         />
       <DataGrid
         initialState={{
