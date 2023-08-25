@@ -46,6 +46,7 @@ import {
 } from '@mui/x-data-grid-generator';
 
 import { createContext } from 'react';
+import * as uuid from "uuid";
 
 const initialRows: GridRowsProp = [
   {
@@ -164,9 +165,19 @@ for (let index = 0; index < participants.length; index++) {
 const initialRowsNew: GridRowsProp = participantsRows;
 
 export default function FullFeaturedCrudGrid() {
+  let appId = "";
   let localStorageData = null;
   if (typeof window !== 'undefined'){
-    localStorageData = localStorage.getItem('scoreboard');
+    let sessionAppId = sessionStorage.getItem('scoreboard_appId');
+    if (sessionAppId == null){
+      appId = uuid.v4();
+      sessionStorage.setItem('scoreboard_appId', appId);
+    }
+    else{
+      appId = sessionAppId;
+    }
+    sessionStorage.setItem('scoreboard_appId', appId);
+    localStorageData = localStorage.getItem(`scoreboard_${appId}`);
   }
   
   const storedDataParticipantsRows: GridValidRowModel[] = [];
@@ -216,7 +227,7 @@ export default function FullFeaturedCrudGrid() {
   const handleDeleteClick = (id: GridRowId) => () => {
     setRows(rows.filter((row) => row.id !== id));
     let toSaveRows = rows.filter((row) => row.id !== id);
-    localStorage.setItem('scoreboard', JSON.stringify(toSaveRows));
+    localStorage.setItem(`scoreboard_${appId}`, JSON.stringify(toSaveRows));
   };
 
   const handleCancelClick = (id: GridRowId) => () => {
@@ -235,7 +246,7 @@ export default function FullFeaturedCrudGrid() {
     const updatedRow = { ...newRow, isNew: false };
     let toSaveRows = rows.map((row) => (row.id === newRow.id ? updatedRow : row));
     setRows(rows.map((row) => (row.id === newRow.id ? updatedRow : row)));
-    localStorage.setItem('scoreboard', JSON.stringify(toSaveRows));
+    localStorage.setItem(`scoreboard_${appId}`, JSON.stringify(toSaveRows));
     return updatedRow;
   };
 

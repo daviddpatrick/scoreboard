@@ -24,11 +24,15 @@
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "@types/uuid": "^9.0.2"
   },
   "browser": {
     "fs": false,
     "os": false,
     "path": false
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.2"
   }
 }
